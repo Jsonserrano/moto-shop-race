@@ -1,0 +1,20 @@
+{
+  "name": "moto-shop-race",
+  "version": "1.0.0",
+  "description": "Plataforma frontend profesional para concesionario de motos, optimizada para Colombia. Incluye carrito de compras, gestión de catálogo modular e integración directa de ventas mediante WhatsApp.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "axios": "^1.20.0",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "express": "^5.3.0"
+  }
+}

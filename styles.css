@@ -1,0 +1,77 @@
+:root {
+    --tvs-red: #E31837;
+    --dark: #121212;
+    --dark-alt: #1a1a1a;
+    --light: #ffffff;
+    --gray: #333333;
+    --bg-color: #0a0a0a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background-color: var(--bg-color); color: var(--light); }
+
+header { background: #111; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--tvs-red); position: sticky; top: 0; z-index: 100; }
+.logo { display: flex; align-items: center; gap: 10px; color: var(--light); font-size: 1.2rem; font-weight:bold; }
+.logo i { color: var(--tvs-red); font-size: 1.8rem; }
+.header-actions { display: flex; align-items: center; gap: 15px; }
+.cart-toggle { background: transparent; border: none; color: var(--light); font-size: 1.2rem; cursor: pointer; }
+.auth-btn { background: transparent; color: var(--light); border: 1px solid var(--tvs-red); padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+
+.redes-container { position: fixed; left: 15px; top: 35%; transform: translateY(-50%); z-index: 1000; background-color: rgba(0, 255, 255, 0.1); border-radius: 10px; padding: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; gap: 10px; backdrop-filter: blur(5px); border: 1px solid rgba(0, 255, 255, 0.2); }
+.redes-container h2 { color: #00e1ff; text-align: center; font-size: 1.2rem; margin-bottom: 5px; text-shadow: 0 0 5px #00e1ff; }
+.redes-container a { display: flex; align-items: center; text-decoration: none; color: var(--light); padding: 8px 10px; border-radius: 5px; transition: all 0.3s ease; }
+.redes-container a:hover { transform: translateX(5px); background: rgba(255,255,255, 0.1); }
+.redes-container img { width: 30px; height: 30px; margin-right: 10px; border-radius: 50%; }
+
+.container { width: 95%; max-width: 1200px; margin: 30px auto; margin-left: 170px; }
+@media(max-width: 1000px) { .container { margin-left: auto; width: 95%; } .redes-container { display: none; } }
+.section-title { text-align: center; font-size: 2rem; margin-bottom: 30px; color: white; text-transform: uppercase; }
+
+.grid-bloques { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+.bloque-moto { background: var(--dark-alt); border-radius: 5px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #333; }
+
+.galeria-bloque { padding: 15px; text-align: center; background: white; user-select: none; }
+.visor-360 { width: 100%; height: 200px; object-fit: contain; cursor: ew-resize; /* Cursor para indicar arrastre horizontal */ }
+.miniaturas-container { display: flex; gap: 5px; justify-content: center; margin-top: 10px; }
+.miniaturas-container img { width: 50px; height: 50px; object-fit: cover; border: 2px solid #ccc; border-radius: 4px; padding: 2px; }
+.miniaturas-container img.active { border-color: var(--tvs-red); }
+
+.bloque-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+.bloque-info h3 { color: white; font-size: 1.4rem; margin-bottom: 8px; }
+.bloque-info p { color: #aaa; font-size: 0.9rem; margin-bottom: 15px; }
+
+.specs-grid { background: var(--dark); border: 1px solid #2a2a2a; border-radius: 5px; padding: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+.specs-grid div { display: flex; flex-direction: column; }
+.specs-label { color: #f5a623; font-size: 0.85rem; margin-bottom: 3px; }
+.specs-value { color: white; font-weight: bold; font-size: 0.9rem; }
+
+.bloque-precio { font-size: 1.6rem; font-weight: bold; color: var(--tvs-red); margin-bottom: 20px; }
+
+.botones-accion { display: flex; gap: 15px; }
+.btn-cart { background: var(--tvs-red); color: white; border: none; border-radius: 5px; width: 60px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 1.1rem; transition: 0.2s; }
+.btn-cart:hover { background: #b7122b; }
+.btn-cotizar { background: var(--dark); color: white; border: 1px solid var(--tvs-red); border-radius: 5px; flex-grow: 1; padding: 12px; font-weight: bold; text-align: center; text-decoration: none; cursor: pointer; transition: 0.2s; }
+.btn-cotizar:hover { background: #222; }
+
+.container-pagos { max-width: 800px; margin: 0 auto; text-align: center; }
+.payment-section { background: #111; padding: 40px 0; border-top: 1px solid var(--gray); margin-top:40px; }
+.payment-grid { display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; flex-wrap: wrap; }
+.payment-method { background: white; padding: 10px; border-radius: 8px; width: 120px; display: flex; justify-content: center; align-items: center; }
+.payment-method img { width: 100%; height: auto; object-fit: contain; }
+.qr-container { background: var(--dark); padding: 20px; border-radius: 8px; max-width: 300px; margin: 0 auto; border: 1px solid var(--gray); color: white; }
+.qr-code { width: 200px; height: 200px; background: white; padding: 10px; border-radius: 8px; margin-top: 10px; }
+
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; }
+.modal-content { background: var(--dark-alt); padding: 30px; border-radius: 8px; width: 90%; max-width: 400px; position: relative; border: 1px solid var(--gray); }
+.close-modal { position: absolute; right: 15px; top: 10px; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+.form-standard .input-group { margin-bottom: 15px; }
+.form-standard input { width: 100%; padding: 10px; background: var(--dark); color: white; border: 1px solid var(--gray); border-radius: 4px; }
+.btn-primary { background: var(--tvs-red); color: white; border: none; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; }
+.auth-switch { text-align: center; margin-top: 15px; font-size: 0.9rem; color: #ccc;}
+.auth-switch a { color: var(--tvs-red); text-decoration: none; }
+/* Reemplaza o agrega esto en la sección de Visor de imágenes de tu styles.css */
+.galeria-bloque { padding: 15px; text-align: center; background: white; user-select: none; }
+.visor-360, .img-principal { width: 100%; height: 220px; object-fit: contain !important; cursor: ew-resize; display: block; margin: 0 auto; }
+.miniaturas-container { display: flex; gap: 5px; justify-content: center; margin-top: 10px; }
+.miniaturas-container img { width: 50px; height: 50px; object-fit: contain !important; border: 2px solid #ccc; border-radius: 4px; padding: 2px; }
+.miniaturas-container img.active { border-color: var(--tvs-red); }
