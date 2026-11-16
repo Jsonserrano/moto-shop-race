@@ -4,15 +4,16 @@ Tienda en línea de demostración para un concesionario de motos en Colombia: ca
 
 > Proyecto de portafolio de **Jeison Serrano**. No es un concesionario ni tiene relación con TVS Motor Company. Modelos, fichas y precios de referencia consultados el 16 de noviembre de 2026 en [dismerca.com](https://dismerca.com/marca/tvs/); pueden cambiar. Las fotos pertenecen a sus dueños y se enlazan desde esa fuente, no se copian al repositorio.
 
-**Ver la demo:** https://jsonserrano.github.io/moto-shop-race/
+**Ver la demo:** https://jsonserrano.github.io/moto-shop-race/ · **Contacto:** [WhatsApp](https://wa.me/573193729772?text=Hola%2C%20vi%20Moto%20Shop%20Race%20en%20GitHub)
 
 ![Demo de Moto Shop Race](docs/demo.gif)
 
-| Catálogo | Carrito | Medios de pago |
-|---|---|---|
-| ![Catálogo](docs/capturas/01-catalogo.jpg) | ![Carrito](docs/capturas/02-carrito.jpg) | ![Pagos](docs/capturas/03-pagos.jpg) |
+| Inicio | Visor 360° | Carrito | Medios de pago |
+|---|---|---|---|
+| ![Inicio](docs/capturas/01-inicio.jpg) | ![Visor 360](docs/capturas/04-visor-360.jpg) | ![Carrito](docs/capturas/02-carrito.jpg) | ![Pagos](docs/capturas/03-pagos.jpg) |
 
 ## Funciones
+- **Banner de inicio** de la Raider 125 FI y redes sociales con su logo iluminado.
 - **Catálogo TVS** de 26 modelos reales en 7 categorías (urbanas, semiautomáticas, scooter, deportivas, alta gama, neo-retro y motocarros), con filtro por categoría, ficha técnica (motor, potencia, torque, frenos, caja, alimentación) y precio en pesos.
 - **Visor 360°**: arrastra la foto con el mouse o el dedo para girar la moto con sus fotos reales (entre 7 y 18 vistas según el modelo).
 - **Carrito de compras** y **pedido por WhatsApp** con el resumen listo para enviar.
