@@ -987,3 +987,17 @@ document.getElementById('comprar-whatsapp').addEventListener('click', () => {
 
 // Iniciar aplicación
 window.onload = () => { renderizarFiltros(); renderizarBloques(); };
+// Botón del banner: muestra todas las motos y baja hasta la Raider 125 FI
+function verRaiderFI(e) {
+    e.preventDefault();
+    categoriaActiva = 'Todas';
+    renderizarFiltros();
+    renderizarBloques();
+    const moto = motosTVS.find(m => m.modelo === 'TVS Raider 125 FI');
+    const img = moto && document.getElementById(`img-360-${moto.id}`);
+    if (!img) return;
+    const bloque = img.closest('.bloque-moto');
+    bloque.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    bloque.classList.add('resaltado');
+    setTimeout(() => bloque.classList.remove('resaltado'), 2500);
+}
