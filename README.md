@@ -1,20 +1,45 @@
-# 🏍️ Moto Shop Race - E-commerce de Alto Cilindraje
+# 🏍️ Moto Shop Race — Tienda en línea de motos
 
-Plataforma frontend profesional para concesionario de motos, optimizada para Colombia. Incluye carrito de compras, gestión de catálogo modular e integración directa de ventas mediante WhatsApp.
+Tienda en línea de demostración para un concesionario de motos en Colombia: catálogo con fotos, carrito de compras, pedido directo por WhatsApp, pagos colombianos por QR y cuentas de usuario.
 
-## 🚀 Tecnologías Utilizadas
-- **HTML5 & CSS3:** Arquitectura limpia, responsive sin librerías externas.
-- **JavaScript (ES6):** Manejo del DOM, gestión de carrito y pasarela de WhatsApp.
-- **FontAwesome:** Iconografía escalable.
-- **SQL:** Estructura relacional preparada para escalado backend (Ver `database.sql`).
+> Proyecto de portafolio de **Jeison Serrano**. Los productos y precios son de ejemplo.
 
-## ⚙️ Características
-1. **Catálogo Dinámico:** Sistema de grilla estructurada para 5 fotografías por producto.
-2. **Checkout por WhatsApp:** Crea un pre-formato de pedido y lo envía directamente al número del concesionario (`+57 3193729772`).
-3. **Medios de Pago Colombianos:** UI preparada para transferencias directas (Nequi, Daviplata, Bancolombia, PSE) mediante lectura de código QR.
-4. **Diseño "No-Nonsense":** UI/UX seria, enfocada a la conversión, sin animaciones que distraigan la atención del usuario (Dark Mode corporativo).
+**Ver la demo:** https://jsonserrano.github.io/moto-shop-race/
 
-## 🛠️ Instalación y Uso (Desarrollo)
-1. Clona el repositorio:
-   ```bash
-   git clone [https://github.com/tu-usuario/moto-shop-race.git](https://github.com/tu-usuario/moto-shop-race.git)
+![Demo de Moto Shop Race](docs/demo.gif)
+
+| Catálogo | Carrito | Medios de pago |
+|---|---|---|
+| ![Catálogo](docs/capturas/01-catalogo.jpg) | ![Carrito](docs/capturas/02-carrito.jpg) | ![Pagos](docs/capturas/03-pagos.jpg) |
+
+## Funciones
+- **Catálogo TVS** de 15 modelos con ficha técnica (motor, potencia, peso, frenos) y precio en pesos.
+- **Visor 360°**: arrastra la foto con el mouse o el dedo para girar entre las 5 vistas de cada moto.
+- **Carrito de compras** y **pedido por WhatsApp** con el resumen listo para enviar.
+- **Pagos colombianos**: Nequi, Daviplata, Bancolombia y PSE con código QR.
+- **Cuentas de usuario**: registro e inicio de sesión en el navegador (funciona sin servidor) y una API opcional en Node/Express con contraseñas cifradas (bcrypt).
+- **Diseño oscuro** y adaptable a celular, tablet y computador.
+- **Base de datos SQL** de referencia (`database.sql`) para llevarla a MySQL.
+
+## Tecnologías
+HTML5 · CSS3 · JavaScript (ES6) · Node.js + Express · bcryptjs · SQL · Font Awesome
+
+## Cómo ejecutarla
+```bash
+git clone https://github.com/Jsonserrano/moto-shop-race.git
+cd moto-shop-race
+npm install
+npm start          # API opcional de cuentas en http://localhost:3000
+```
+Para ver la tienda basta con abrir `MotoShopRace_index.html` (o `index.html`) en el navegador; no necesita servidor.
+
+`usuarios.json` se crea solo al registrar la primera cuenta (no se sube a GitHub). Para usar PHP/MySQL hay un ejemplo de conexión en `config.ejemplo.php`.
+
+## Estructura
+```
+MotoShopRace_index.html   página principal (index.html la abre)
+styles.css · script.js    estilos y lógica (catálogo, carrito, WhatsApp, pagos)
+server.js                 API de registro e inicio de sesión
+database.sql              modelo de base de datos
+config.ejemplo.php        ejemplo de conexión PHP/MySQL
+```
