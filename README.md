@@ -13,7 +13,7 @@ Tienda en línea de demostración para un concesionario de motos en Colombia: ca
 | ![Catálogo](docs/capturas/01-catalogo.jpg) | ![Carrito](docs/capturas/02-carrito.jpg) | ![Pagos](docs/capturas/03-pagos.jpg) |
 
 ## Funciones
-- **Catálogo TVS** de 26 modelos reales en 6 categorías (urbanas, semiautomáticas, scooter, deportivas, alta gama y motocarros), con filtro por categoría, ficha técnica (motor, potencia, torque, frenos, caja, alimentación) y precio en pesos.
+- **Catálogo TVS** de 26 modelos reales en 7 categorías (urbanas, semiautomáticas, scooter, deportivas, alta gama, neo-retro y motocarros), con filtro por categoría, ficha técnica (motor, potencia, torque, frenos, caja, alimentación) y precio en pesos.
 - **Visor 360°**: arrastra la foto con el mouse o el dedo para girar la moto con sus fotos reales (entre 7 y 18 vistas según el modelo).
 - **Carrito de compras** y **pedido por WhatsApp** con el resumen listo para enviar.
 - **Pagos colombianos**: Nequi, Daviplata, Bancolombia y PSE con código QR.

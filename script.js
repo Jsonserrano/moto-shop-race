@@ -6,7 +6,7 @@ const motosTVS = [
   "modelo": "TVS Sport 100 KLS",
   "categoria": "Urbanas",
   "precio": 4999999,
-  "descripcion": "La más económica de la línea: arranque de patada, motor de 99.7 cc y tanque de 10 litros para el trabajo diario.",
+  "descripcion": "Pensada para el trabajo diario: máxima economía de combustible, arranque de pedal y gran durabilidad. Tanque de 10 litros.",
   "caracteristicas": {
    "motor": "99.7 cc",
    "potencia": "7.38 HP @ 7500 rpm",
@@ -24,7 +24,7 @@ const motosTVS = [
   "modelo": "TVS Sport 100 ELS",
   "categoria": "Urbanas",
   "precio": 5999999,
-  "descripcion": "La Sport 100 con arranque eléctrico y tanque de 11 litros.",
+  "descripcion": "La Sport 100 con arranque eléctrico: máxima economía de combustible y durabilidad para el trabajo diario. Tanque de 11 litros.",
   "caracteristicas": {
    "motor": "99.7 cc",
    "potencia": "7.38 HP @ 7500 rpm",
@@ -56,7 +56,7 @@ const motosTVS = [
   "modelo": "TVS Sport 110 FI",
   "categoria": "Urbanas",
   "precio": 6199999,
-  "descripcion": "Urbana de 109.7 cc con inyección electrónica y freno de disco delantero.",
+  "descripcion": "Evolución de la gama de trabajo y ciudad: inyección electrónica para gastar menos y responder mejor en bajas revoluciones.",
   "caracteristicas": {
    "motor": "109.7 cc",
    "potencia": "8.1 HP",
@@ -89,7 +89,7 @@ const motosTVS = [
   "modelo": "TVS Raider 125",
   "categoria": "Urbanas",
   "precio": 7799999,
-  "descripcion": "Urbana de estilo deportivo: 124.79 cc, caja de 5 velocidades y arranque eléctrico ISG.",
+  "descripcion": "Una de las joyas de la marca: diseño agresivo, tablero digital completo, modos de conducción Eco/Power, puerto USB e iluminación LED.",
   "caracteristicas": {
    "motor": "124.79 cc",
    "potencia": "12.73 HP @ 8000 rpm",
@@ -122,7 +122,7 @@ const motosTVS = [
   "modelo": "TVS Raider 125 Racing",
   "categoria": "Urbanas",
   "precio": 8049999,
-  "descripcion": "La Raider 125 en edición Racing, con la misma mecánica y gráficos especiales.",
+  "descripcion": "La Raider en edición Racing: diseño agresivo, tablero digital completo, modos Eco/Power, puerto USB e iluminación LED.",
   "caracteristicas": {
    "motor": "124.79 cc",
    "potencia": "12.73 HP @ 8000 rpm",
@@ -156,7 +156,7 @@ const motosTVS = [
   "modelo": "TVS Raider 125 FI",
   "categoria": "Urbanas",
   "precio": 8199999,
-  "descripcion": "La Raider con inyección electrónica y frenos combinados SBT.",
+  "descripcion": "La Raider con inyección electrónica: más eficiencia de combustible y una respuesta del acelerador más directa y limpia.",
   "caracteristicas": {
    "motor": "124.8 cc",
    "potencia": "11.22 HP @ 7500 rpm",
@@ -189,7 +189,7 @@ const motosTVS = [
   "modelo": "TVS Neo NX 110",
   "categoria": "Semiautomáticas",
   "precio": 6399999,
-  "descripcion": "Semiautomática de 109.7 cc, sin clutch manual y con disco delantero.",
+  "descripcion": "Semiautomática práctica y cómoda para ciudad, sin embrague manual; ideal para mensajería y movilidad ágil.",
   "caracteristicas": {
    "motor": "109.7 cc",
    "potencia": "8.44 HP @ 7500 rpm",
@@ -222,7 +222,7 @@ const motosTVS = [
   "modelo": "TVS Neo NX 125 FI",
   "categoria": "Semiautomáticas",
   "precio": 7999999,
-  "descripcion": "Semiautomática de 4 velocidades con inyección electrónica; pesa 106 kg.",
+  "descripcion": "Más cilindrada y potencia en formato semiautomático, con inyección electrónica para optimizar el consumo y reducir emisiones.",
   "caracteristicas": {
    "motor": "124.5 cc",
    "potencia": "9.25 HP @ 8000 rpm",
@@ -255,7 +255,7 @@ const motosTVS = [
   "modelo": "TVS Dazz 110",
   "categoria": "Automáticas Scooter",
   "precio": 6499999,
-  "descripcion": "Scooter automática de 109.7 cc con freno de disco delantero.",
+  "descripcion": "Scooter ligera, compacta y muy económica para la movilidad urbana diaria, con suelo plano y guantera delantera.",
   "caracteristicas": {
    "motor": "109.7 cc",
    "potencia": "7.9 HP @ 7500 rpm",
@@ -279,7 +279,7 @@ const motosTVS = [
   "modelo": "TVS NTORQ 125 XConnect",
   "categoria": "Automáticas Scooter",
   "precio": 7999999,
-  "descripcion": "Scooter deportiva de 124.79 cc con refrigeración por aire forzado.",
+  "descripcion": "Scooter deportiva con conectividad Bluetooth (SmartXonnect), pantalla digital con navegación paso a paso y escape de sonido deportivo.",
   "caracteristicas": {
    "motor": "124.79 cc",
    "potencia": "9.25 HP @ 7500 rpm",
@@ -312,7 +312,7 @@ const motosTVS = [
   "modelo": "TVS NTORQ 125 XConnect FI",
   "categoria": "Automáticas Scooter",
   "precio": 10199999,
-  "descripcion": "La NTORQ 125 con inyección electrónica.",
+  "descripcion": "La NTORQ con inyección electrónica: conectividad Bluetooth (SmartXonnect), navegación paso a paso y escape de sonido deportivo.",
   "caracteristicas": {
    "motor": "124.79 cc",
    "potencia": "9.25 HP @ 7000 rpm",
@@ -345,7 +345,7 @@ const motosTVS = [
   "modelo": "TVS Apache 160 Carburada ABS",
   "categoria": "Deportivas",
   "precio": 9649999,
-  "descripcion": "Apache de 159.7 cc con refrigeración aire/aceite y doble disco; pesa 145 kg.",
+  "descripcion": "Buen equilibrio entre potencia y torque, con frenos ABS, monoamortiguador trasero y diseño aerodinámico.",
   "caracteristicas": {
    "motor": "159.7 cc",
    "potencia": "16.3 HP @ 8000 rpm",
@@ -380,7 +380,7 @@ const motosTVS = [
   "modelo": "TVS Apache RTR 160 4V XC FI",
   "categoria": "Deportivas",
   "precio": 10499999,
-  "descripcion": "Apache 160 de 4 válvulas con inyección y modos de manejo (Sport, Urban y Lluvia).",
+  "descripcion": "Motor de 4 válvulas con inyección, frenos ABS, monoamortiguador trasero y tablero con telemetría de carrera.",
   "caracteristicas": {
    "motor": "159.7 cc",
    "potencia": "17.3 HP @ 9250 rpm",
@@ -412,7 +412,7 @@ const motosTVS = [
   "modelo": "TVS Apache RTR 160 4V XC FI Racing",
   "categoria": "Deportivas",
   "precio": 10749999,
-  "descripcion": "Edición Racing de la Apache 160 con inyección; pesa 145 kg.",
+  "descripcion": "Edición Racing de la Apache 160 con inyección, frenos ABS y monoamortiguador trasero.",
   "caracteristicas": {
    "motor": "159.7 cc",
    "potencia": "16.3 HP @ 8000 rpm",
@@ -437,7 +437,7 @@ const motosTVS = [
   "modelo": "TVS Apache 160 FI ABS Edición Especial",
   "categoria": "Deportivas",
   "precio": 11149999,
-  "descripcion": "Edición Especial de la Apache 160 con inyección y ABS; pesa 145 kg.",
+  "descripcion": "Edición Especial de la Apache 160 con inyección, frenos ABS y diseño aerodinámico.",
   "caracteristicas": {
    "motor": "159.7 cc",
    "potencia": "16.3 HP @ 8000 rpm",
@@ -462,7 +462,7 @@ const motosTVS = [
   "modelo": "TVS Apache 160 NG (preventa)",
   "categoria": "Deportivas",
   "precio": 11499999,
-  "descripcion": "Nueva generación con barras invertidas, motor SOHC de 4 válvulas y radiador de aceite.",
+  "descripcion": "Nueva generación: barras invertidas, motor de 4 válvulas con inyección, frenos ABS y tablero con telemetría de carrera.",
   "caracteristicas": {
    "motor": "159.7 cc",
    "potencia": "17.3 HP @ 9250 rpm (modo Sport)",
@@ -493,7 +493,7 @@ const motosTVS = [
   "modelo": "TVS Apache 200 Carburada ABS",
   "categoria": "Deportivas",
   "precio": 12199999,
-  "descripcion": "Apache de 197.75 cc con refrigeración aire/aceite y doble disco.",
+  "descripcion": "Apache de 197.75 cc y 4 válvulas con frenos ABS en ambas ruedas y refrigeración aire/aceite.",
   "caracteristicas": {
    "motor": "197.75 cc",
    "potencia": "20.24 HP @ 8000 rpm",
@@ -528,7 +528,7 @@ const motosTVS = [
   "modelo": "TVS Apache RTR 200 4V XC FI ABS",
   "categoria": "Deportivas",
   "precio": 12999999,
-  "descripcion": "Apache 200 de 4 válvulas con inyección, ABS y discos lobulados.",
+  "descripcion": "Inyección electrónica, embrague antirrebote, 3 modos de conducción (Sport, Urban, Rain) y ABS en ambas ruedas.",
   "caracteristicas": {
    "motor": "197.75 cc",
    "potencia": "20.54 HP @ 9000 rpm",
@@ -561,7 +561,7 @@ const motosTVS = [
   "modelo": "TVS Apache 200 FI Edición Especial",
   "categoria": "Deportivas",
   "precio": 13299999,
-  "descripcion": "Edición Especial de la Apache 200 con inyección y discos lobulados.",
+  "descripcion": "Edición Especial con inyección, embrague antirrebote, 3 modos de conducción (Sport, Urban, Rain) y ABS en ambas ruedas.",
   "caracteristicas": {
    "motor": "197.75 cc",
    "potencia": "20.54 HP @ 9000 rpm",
@@ -590,7 +590,7 @@ const motosTVS = [
   "modelo": "TVS Apache 200 NG",
   "categoria": "Deportivas",
   "precio": 14999999,
-  "descripcion": "Nueva generación de la Apache 200: barras invertidas, 4 válvulas y radiador de aceite.",
+  "descripcion": "Nueva generación con suspensión delantera invertida, embrague antirrebote, 3 modos de conducción y ABS en ambas ruedas.",
   "caracteristicas": {
    "motor": "197.75 cc",
    "potencia": "20.54 HP @ 9000 rpm",
@@ -621,9 +621,9 @@ const motosTVS = [
  {
   "id": 21,
   "modelo": "TVS Ronin TD",
-  "categoria": "Alta Gama",
+  "categoria": "Neo-Retro / Clásicas",
   "precio": 13999999,
-  "descripcion": "Estilo neo-retro: 225.9 cc, 4 válvulas, tanque de 14 litros y 160 kg.",
+  "descripcion": "Estilo neo-retro: farola LED en forma de T, ABS de doble canal, embrague antirrebote y conectividad SmartXonnect, para la ciudad y las rodadas de fin de semana.",
   "caracteristicas": {
    "motor": "225.9 cc",
    "potencia": "20.13 HP @ 7750 rpm",
@@ -648,7 +648,7 @@ const motosTVS = [
   "modelo": "TVS Apache RTR 310",
   "categoria": "Alta Gama",
   "precio": 27799999,
-  "descripcion": "La naked tope de línea: 312.12 cc, refrigeración líquida, 6 velocidades y quick shifter.",
+  "descripcion": "La cúspide tecnológica de TVS: acelerador electrónico, control de tracción, modos de conducción avanzados y diseño naked agresivo.",
   "caracteristicas": {
    "motor": "312.12 cc",
    "potencia": "35.6 HP @ 9700 rpm (Sport/Track)",
@@ -673,7 +673,7 @@ const motosTVS = [
   "modelo": "TVS Apache RTR 310 PRM",
   "categoria": "Alta Gama",
   "precio": 29499999,
-  "descripcion": "Versión premium de la RTR 310; pesa 170 kg.",
+  "descripcion": "La RTR 310 con el paquete de rendimiento: acelerador electrónico, control de tracción y de estabilidad, y conectividad total.",
   "caracteristicas": {
    "motor": "312.12 cc",
    "potencia": "35.6 HP @ 9700 rpm (Sport/Track)",

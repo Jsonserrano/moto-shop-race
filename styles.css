@@ -86,3 +86,4 @@ header { background: #111; padding: 15px 5%; display: flex; justify-content: spa
 .aviso-demo { max-width: 900px; margin: 40px auto 30px; padding: 0 5%; text-align: center; color: #999; font-size: 0.85rem; line-height: 1.5; }
 .aviso-demo p { margin-bottom: 8px; }
 .aviso-demo a { color: #ddd; }
+.nota-precios { color: #ccc; font-style: italic; }
