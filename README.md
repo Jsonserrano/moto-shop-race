@@ -2,7 +2,7 @@
 
 Tienda en línea de demostración para un concesionario de motos en Colombia: catálogo con fotos, carrito de compras, pedido directo por WhatsApp, pagos colombianos por QR y cuentas de usuario.
 
-> Proyecto de portafolio de **Jeison Serrano**. Los productos y precios son de ejemplo.
+> Proyecto de portafolio de **Jeison Serrano**. No es un concesionario ni tiene relación con TVS Motor Company. Modelos, fichas y precios de referencia consultados el 16 de noviembre de 2026 en [dismerca.com](https://dismerca.com/marca/tvs/); pueden cambiar. Las fotos pertenecen a sus dueños y se enlazan desde esa fuente, no se copian al repositorio.
 
 **Ver la demo:** https://jsonserrano.github.io/moto-shop-race/
 
@@ -13,8 +13,8 @@ Tienda en línea de demostración para un concesionario de motos en Colombia: ca
 | ![Catálogo](docs/capturas/01-catalogo.jpg) | ![Carrito](docs/capturas/02-carrito.jpg) | ![Pagos](docs/capturas/03-pagos.jpg) |
 
 ## Funciones
-- **Catálogo TVS** de 15 modelos con ficha técnica (motor, potencia, peso, frenos) y precio en pesos.
-- **Visor 360°**: arrastra la foto con el mouse o el dedo para girar entre las 5 vistas de cada moto.
+- **Catálogo TVS** de 26 modelos reales en 6 categorías (urbanas, semiautomáticas, scooter, deportivas, alta gama y motocarros), con filtro por categoría, ficha técnica (motor, potencia, torque, frenos, caja, alimentación) y precio en pesos.
+- **Visor 360°**: arrastra la foto con el mouse o el dedo para girar la moto con sus fotos reales (entre 7 y 18 vistas según el modelo).
 - **Carrito de compras** y **pedido por WhatsApp** con el resumen listo para enviar.
 - **Pagos colombianos**: Nequi, Daviplata, Bancolombia y PSE con código QR.
 - **Cuentas de usuario**: registro e inicio de sesión en el navegador (funciona sin servidor) y una API opcional en Node/Express con contraseñas cifradas (bcrypt).

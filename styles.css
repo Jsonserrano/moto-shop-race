@@ -75,3 +75,14 @@ header { background: #111; padding: 15px 5%; display: flex; justify-content: spa
 .miniaturas-container { display: flex; gap: 5px; justify-content: center; margin-top: 10px; }
 .miniaturas-container img { width: 50px; height: 50px; object-fit: contain !important; border: 2px solid #ccc; border-radius: 4px; padding: 2px; }
 .miniaturas-container img.active { border-color: var(--tvs-red); }
+/* Filtros por categoría, etiqueta y aviso de demostración */
+.filtros-categoria { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 30px; }
+.filtro-btn { background: transparent; color: #ddd; border: 1px solid #444; border-radius: 20px; padding: 8px 16px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+.filtro-btn:hover { border-color: var(--tvs-red); color: #fff; }
+.filtro-btn.active { background: var(--tvs-red); border-color: var(--tvs-red); color: #fff; }
+.etiqueta-categoria { display: inline-block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #aaa; border: 1px solid #444; border-radius: 12px; padding: 3px 10px; margin-bottom: 8px; }
+.galeria-bloque { background: #fff; }
+.miniaturas-container img { cursor: pointer; background: #fff; }
+.aviso-demo { max-width: 900px; margin: 40px auto 30px; padding: 0 5%; text-align: center; color: #999; font-size: 0.85rem; line-height: 1.5; }
+.aviso-demo p { margin-bottom: 8px; }
+.aviso-demo a { color: #ddd; }

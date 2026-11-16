@@ -38,173 +38,776 @@ app.post('/api/login', async (req, res) => {
     res.json({ mensaje: `Bienvenido`, usuario: { nombre: usuario.nombre, email: usuario.email } });
 });
 
-// Catálogo COMPLETO TVS (15 modelos, 5 fotos cada uno)
+// Catálogo TVS: modelos, precios y fichas tomados de dismerca.com/marca/tvs (consulta: 16 nov 2026).
+// Las fotos se enlazan desde la fuente; no se copian al repositorio.
 const motosTVS = [
-    {
-        id: 1, modelo: "TVS Sport 100 (KLS / ELS)", precio: 4999000, descripcion: "Economía extrema y durabilidad. Ideal para el trabajo diario.",
-        caracteristicas: { motor: "99.7 cc", potencia: "7.38 HP", peso: "110 kg", frenos: "Campana / Campana" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=500",
-            "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=500",
-            "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=500",
-            "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500",
-            "https://images.unsplash.com/photo-1568772585407-9361f9bfce92?w=500"
-        ]
-    },
-    {
-        id: 2, modelo: "TVS Sport 110 FI", precio: 5599000, descripcion: "Inyección electrónica para mayor rendimiento de combustible.",
-        caracteristicas: { motor: "109.7 cc", potencia: "8.08 HP", peso: "112 kg", frenos: "Campana / Campana" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1614165936126-2ed18e471b3b?w=500",
-            "https://images.unsplash.com/photo-1600861194979-f628096238b1?w=500",
-            "https://images.unsplash.com/photo-1590656608518-8f81ea3fb18b?w=500",
-            "https://images.unsplash.com/photo-1598460621415-32a832c6f140?w=500",
-            "https://images.unsplash.com/photo-1591552097782-b7b514300346?w=500"
-        ]
-    },
-    {
-        id: 3, modelo: "TVS Raider 125", precio: 7299000, descripcion: "Diseño agresivo, tablero digital LCD y modos de manejo.",
-        caracteristicas: { motor: "124.8 cc", potencia: "11.2 HP", peso: "120 kg", frenos: "Disco / Campana" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1591040505562-b9cf8dd3916e?w=500",
-            "https://images.unsplash.com/photo-1616231682705-4c07921a97d9?w=500",
-            "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=500",
-            "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=500",
-            "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=500"
-        ]
-    },
-    {
-        id: 4, modelo: "TVS Raider 125 FI", precio: 7799000, descripcion: "La mejor de su segmento ahora con Inyección Electrónica.",
-        caracteristicas: { motor: "124.8 cc", potencia: "11.2 HP", peso: "120 kg", frenos: "Disco / Campana" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500",
-            "https://images.unsplash.com/photo-1590656608518-8f81ea3fb18b?w=500",
-            "https://images.unsplash.com/photo-1568772585407-9361f9bfce92?w=500",
-            "https://images.unsplash.com/photo-1614165936126-2ed18e471b3b?w=500",
-            "https://images.unsplash.com/photo-1600861194979-f628096238b1?w=500"
-        ]
-    },
-    {
-        id: 5, modelo: "TVS Apache RTR 160 2V", precio: 7999000, descripcion: "Potencia y tradición en el segmento street. Agilidad pura.",
-        caracteristicas: { motor: "159.7 cc", potencia: "15.8 HP", peso: "139 kg", frenos: "Disco / Campana" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1598460621415-32a832c6f140?w=500",
-            "https://images.unsplash.com/photo-1591552097782-b7b514300346?w=500",
-            "https://images.unsplash.com/photo-1591040505562-b9cf8dd3916e?w=500",
-            "https://images.unsplash.com/photo-1616231682705-4c07921a97d9?w=500",
-            "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=500"
-        ]
-    },
-    {
-        id: 6, modelo: "TVS Apache RTR 160 4V", precio: 9299000, descripcion: "Refrigeración por aceite, telemetría SmartXonnect y frenos ABS.",
-        caracteristicas: { motor: "159.7 cc", potencia: "17.3 HP", peso: "145 kg", frenos: "Disco ABS / Disco" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=500",
-            "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=500",
-            "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500",
-            "https://images.unsplash.com/photo-1590656608518-8f81ea3fb18b?w=500",
-            "https://images.unsplash.com/photo-1568772585407-9361f9bfce92?w=500"
-        ]
-    },
-    {
-        id: 7, modelo: "TVS Apache RTR 200 4V", precio: 11599000, descripcion: "Suspensión Showa ajustable, modos de manejo y frenos ABS.",
-        caracteristicas: { motor: "197.7 cc", potencia: "20.5 HP", peso: "152 kg", frenos: "Disco ABS / Disco" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1614165936126-2ed18e471b3b?w=500",
-            "https://images.unsplash.com/photo-1600861194979-f628096238b1?w=500",
-            "https://images.unsplash.com/photo-1598460621415-32a832c6f140?w=500",
-            "https://images.unsplash.com/photo-1591552097782-b7b514300346?w=500",
-            "https://images.unsplash.com/photo-1591040505562-b9cf8dd3916e?w=500"
-        ]
-    },
-    {
-        id: 8, modelo: "TVS Apache RTR 310", precio: 22500000, descripcion: "Naked deportiva premium. Control de crucero y faro LED.",
-        caracteristicas: { motor: "312.1 cc", potencia: "35.6 HP", peso: "169 kg", frenos: "Disco ABS / Disco ABS" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1616231682705-4c07921a97d9?w=500",
-            "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=500",
-            "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=500",
-            "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=500",
-            "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500"
-        ]
-    },
-    {
-        id: 9, modelo: "TVS Apache RR 310", precio: 24999000, descripcion: "Genética de carreras. Motor desarrollado en conjunto con BMW.",
-        caracteristicas: { motor: "312.2 cc", potencia: "34 HP", peso: "174 kg", frenos: "Disco ABS Doble" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1590656608518-8f81ea3fb18b?w=500",
-            "https://images.unsplash.com/photo-1568772585407-9361f9bfce92?w=500",
-            "https://images.unsplash.com/photo-1614165936126-2ed18e471b3b?w=500",
-            "https://images.unsplash.com/photo-1600861194979-f628096238b1?w=500",
-            "https://images.unsplash.com/photo-1598460621415-32a832c6f140?w=500"
-        ]
-    },
-    {
-        id: 10, modelo: "TVS Ronin 225", precio: 15499000, descripcion: "Estilo neo-retro, suspensión invertida y torque excepcional.",
-        caracteristicas: { motor: "225.9 cc", potencia: "20.4 HP", peso: "160 kg", frenos: "Disco ABS / Disco" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1591552097782-b7b514300346?w=500",
-            "https://images.unsplash.com/photo-1591040505562-b9cf8dd3916e?w=500",
-            "https://images.unsplash.com/photo-1616231682705-4c07921a97d9?w=500",
-            "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=500",
-            "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=500"
-        ]
-    },
-    {
-        id: 11, modelo: "TVS Neo NX 110", precio: 5399000, descripcion: "Moto semiautomática práctica, ligera y fácil de manejar.",
-        caracteristicas: { motor: "109.7 cc", potencia: "8.5 HP", peso: "101 kg", frenos: "Disco / Campana" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=500",
-            "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500",
-            "https://images.unsplash.com/photo-1590656608518-8f81ea3fb18b?w=500",
-            "https://images.unsplash.com/photo-1568772585407-9361f9bfce92?w=500",
-            "https://images.unsplash.com/photo-1614165936126-2ed18e471b3b?w=500"
-        ]
-    },
-    {
-        id: 12, modelo: "TVS Dazz 110", precio: 5899000, descripcion: "Scooter automático urbano con puerto de carga USB integrado.",
-        caracteristicas: { motor: "109.6 cc", potencia: "8.7 HP", peso: "93 kg", frenos: "Disco / Campana" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1600861194979-f628096238b1?w=500",
-            "https://images.unsplash.com/photo-1598460621415-32a832c6f140?w=500",
-            "https://images.unsplash.com/photo-1591552097782-b7b514300346?w=500",
-            "https://images.unsplash.com/photo-1591040505562-b9cf8dd3916e?w=500",
-            "https://images.unsplash.com/photo-1616231682705-4c07921a97d9?w=500"
-        ]
-    },
-    {
-        id: 13, modelo: "TVS NTORQ 125", precio: 8499000, descripcion: "El scooter deportivo más conectado. Pantalla digital y bluetooth.",
-        caracteristicas: { motor: "124.8 cc", potencia: "9.25 HP", peso: "116 kg", frenos: "Disco / Campana" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=500",
-            "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=500",
-            "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=500",
-            "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500",
-            "https://images.unsplash.com/photo-1590656608518-8f81ea3fb18b?w=500"
-        ]
-    },
-    {
-        id: 14, modelo: "TVS iQube (Eléctrica)", precio: 13990000, descripcion: "Movilidad 100% eléctrica. Tablero TFT y cero emisiones.",
-        caracteristicas: { motor: "Eléctrico HUB", potencia: "4.4 kW", peso: "117 kg", frenos: "Disco / Campana" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1568772585407-9361f9bfce92?w=500",
-            "https://images.unsplash.com/photo-1614165936126-2ed18e471b3b?w=500",
-            "https://images.unsplash.com/photo-1600861194979-f628096238b1?w=500",
-            "https://images.unsplash.com/photo-1598460621415-32a832c6f140?w=500",
-            "https://images.unsplash.com/photo-1591552097782-b7b514300346?w=500"
-        ]
-    },
-    {
-        id: 15, modelo: "TVS King (Motocarro)", precio: 16890000, descripcion: "Máxima rentabilidad para tu negocio. Chasis reforzado.",
-        caracteristicas: { motor: "199.2 cc", potencia: "10.4 HP", peso: "356 kg", frenos: "Tambor Hidráulico" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1591040505562-b9cf8dd3916e?w=500",
-            "https://images.unsplash.com/photo-1616231682705-4c07921a97d9?w=500",
-            "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=500",
-            "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=500",
-            "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=500"
-        ]
-    }
+ {
+  "id": 1,
+  "modelo": "TVS Sport 100 KLS",
+  "categoria": "Urbanas",
+  "precio": 4999999,
+  "descripcion": "La más económica de la línea: arranque de patada, motor de 99.7 cc y tanque de 10 litros para el trabajo diario.",
+  "caracteristicas": {
+   "motor": "99.7 cc",
+   "potencia": "7.38 HP @ 7500 rpm",
+   "torque": "7.5 Nm @ 5000 rpm",
+   "frenos": "Tambor 130 mm / Tambor 110 mm",
+   "transmision": "Mecánica 4 velocidades",
+   "alimentacion": "Carburador"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/150920261789430615TVS-Sport-100-KLS-Negro-Nebulosa-Gris-360-01Thumbnail.webp"
+  ]
+ },
+ {
+  "id": 2,
+  "modelo": "TVS Sport 100 ELS",
+  "categoria": "Urbanas",
+  "precio": 5999999,
+  "descripcion": "La Sport 100 con arranque eléctrico y tanque de 11 litros.",
+  "caracteristicas": {
+   "motor": "99.7 cc",
+   "potencia": "7.38 HP @ 7500 rpm",
+   "torque": "7.5 Nm @ 5000 rpm",
+   "frenos": "Tambor 130 mm / Tambor 110 mm",
+   "transmision": "Mecánica 4 velocidades",
+   "alimentacion": "Carburador"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786666019TVS-Sport-100-ELS-Negro-Gris-360-01.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786666021TVS-Sport-100-ELS-Negro-Gris-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786666023TVS-Sport-100-ELS-Negro-Gris-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786666024TVS-Sport-100-ELS-Negro-Gris-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786666026TVS-Sport-100-ELS-Negro-Gris-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786666027TVS-Sport-100-ELS-Negro-Gris-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786666029TVS-Sport-100-ELS-Negro-Gris-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786666031TVS-Sport-100-ELS-Negro-Gris-360-08.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786666033TVS-Sport-100-ELS-Negro-Gris-360-09.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786666034TVS-Sport-100-ELS-Negro-Gris-360-10.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786666036TVS-Sport-100-ELS-Negro-Gris-360-11.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786666038TVS-Sport-100-ELS-Negro-Gris-360-12.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786666040TVS-Sport-100-ELS-Negro-Gris-360-13.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786666041TVS-Sport-100-ELS-Negro-Gris-360-14.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786666043TVS-Sport-100-ELS-Negro-Gris-360-15.webp"
+  ]
+ },
+ {
+  "id": 3,
+  "modelo": "TVS Sport 110 FI",
+  "categoria": "Urbanas",
+  "precio": 6199999,
+  "descripcion": "Urbana de 109.7 cc con inyección electrónica y freno de disco delantero.",
+  "caracteristicas": {
+   "motor": "109.7 cc",
+   "potencia": "8.1 HP",
+   "torque": "8.4 Nm @ 4500 rpm",
+   "frenos": "Disco 240 mm / Campana 110 mm",
+   "transmision": "Mecánica",
+   "alimentacion": "Inyección electrónica"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307588TVS-Sport-110-FI-Thumbnail.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307589TVS-Sport-100-FI-Negra-nebulosa-gris-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307591TVS-Sport-100-FI-Negra-nebulosa-gris-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307593TVS-Sport-100-FI-Negra-nebulosa-gris-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307594TVS-Sport-100-FI-Negra-nebulosa-gris-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307596TVS-Sport-100-FI-Negra-nebulosa-gris-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307597TVS-Sport-100-FI-Negra-nebulosa-gris-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307598TVS-Sport-100-FI-Negra-nebulosa-gris-360-08.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307600TVS-Sport-100-FI-Negra-nebulosa-gris-360-09.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307601TVS-Sport-100-FI-Negra-nebulosa-gris-360-10.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307603TVS-Sport-100-FI-Negra-nebulosa-gris-360-11.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307604TVS-Sport-100-FI-Negra-nebulosa-gris-360-12.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307605TVS-Sport-100-FI-Negra-nebulosa-gris-360-13.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307607TVS-Sport-100-FI-Negra-nebulosa-gris-360-14.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307609TVS-Sport-100-FI-Negra-nebulosa-gris-360-15.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307610TVS-Sport-100-FI-Negra-nebulosa-gris-360-16.webp"
+  ]
+ },
+ {
+  "id": 4,
+  "modelo": "TVS Raider 125",
+  "categoria": "Urbanas",
+  "precio": 7799999,
+  "descripcion": "Urbana de estilo deportivo: 124.79 cc, caja de 5 velocidades y arranque eléctrico ISG.",
+  "caracteristicas": {
+   "motor": "124.79 cc",
+   "potencia": "12.73 HP @ 8000 rpm",
+   "torque": "11.5 Nm @ 6500 rpm",
+   "frenos": "Disco 240 mm / Tambor 130 mm",
+   "transmision": "Mecánica 5 velocidades",
+   "alimentacion": "Carburador"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221063TVS-Raider-125-Thumbnail.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221065TVS-Raider-125-Negro-Nebulosa-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221066TVS-Raider-125-Negro-Nebulosa-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221068TVS-Raider-125-Negro-Nebulosa-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221070TVS-Raider-125-Negro-Nebulosa-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221071TVS-Raider-125-Negro-Nebulosa-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221073TVS-Raider-125-Negro-Nebulosa-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221074TVS-Raider-125-Negro-Nebulosa-360-08.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221075TVS-Raider-125-Negro-Nebulosa-360-09.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221077TVS-Raider-125-Negro-Nebulosa-360-10.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221079TVS-Raider-125-Negro-Nebulosa-360-11.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221080TVS-Raider-125-Negro-Nebulosa-360-12.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221082TVS-Raider-125-Negro-Nebulosa-360-13.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221083TVS-Raider-125-Negro-Nebulosa-360-14.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221085TVS-Raider-125-Negro-Nebulosa-360-15.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221086TVS-Raider-125-Negro-Nebulosa-360-16.webp"
+  ]
+ },
+ {
+  "id": 5,
+  "modelo": "TVS Raider 125 Racing",
+  "categoria": "Urbanas",
+  "precio": 8049999,
+  "descripcion": "La Raider 125 en edición Racing, con la misma mecánica y gráficos especiales.",
+  "caracteristicas": {
+   "motor": "124.79 cc",
+   "potencia": "12.73 HP @ 8000 rpm",
+   "torque": "11.5 Nm @ 6500 rpm",
+   "frenos": "Disco 240 mm / Tambor 130 mm",
+   "transmision": "Mecánica 5 velocidades",
+   "alimentacion": "Carburador"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333216TVS-Raider-125-Racing-Gris-Rojo-360-01.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333217TVS-Raider-125-Racing-Gris-Rojo-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333218TVS-Raider-125-Racing-Gris-Rojo-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333220TVS-Raider-125-Racing-Gris-Rojo-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333222TVS-Raider-125-Racing-Gris-Rojo-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333223TVS-Raider-125-Racing-Gris-Rojo-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333224TVS-Raider-125-Racing-Gris-Rojo-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333226TVS-Raider-125-Racing-Gris-Rojo-360-08.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333227TVS-Raider-125-Racing-Gris-Rojo-360-09.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333228TVS-Raider-125-Racing-Gris-Rojo-360-10.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333230TVS-Raider-125-Racing-Gris-Rojo-360-11.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333232TVS-Raider-125-Racing-Gris-Rojo-360-12.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333233TVS-Raider-125-Racing-Gris-Rojo-360-13.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333235TVS-Raider-125-Racing-Gris-Rojo-360-14.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333236TVS-Raider-125-Racing-Gris-Rojo-360-15.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333237TVS-Raider-125-Racing-Gris-Rojo-360-16.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333239TVS-Raider-125-Racing-Gris-Rojo-360-17.webp"
+  ]
+ },
+ {
+  "id": 6,
+  "modelo": "TVS Raider 125 FI",
+  "categoria": "Urbanas",
+  "precio": 8199999,
+  "descripcion": "La Raider con inyección electrónica y frenos combinados SBT.",
+  "caracteristicas": {
+   "motor": "124.8 cc",
+   "potencia": "11.22 HP @ 7500 rpm",
+   "torque": "11.2 Nm @ 6000 rpm",
+   "frenos": "Disco 240 mm / Tambor 130 mm (SBT)",
+   "transmision": "Mecánica 5 velocidades",
+   "alimentacion": "Inyección electrónica"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221202TVS-Raider-125-FI-Thumbnail.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221204TVS-Raider-125-FI-Gris-Negro-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221205TVS-Raider-125-FI-Gris-Negro-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221207TVS-Raider-125-FI-Gris-Negro-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221208TVS-Raider-125-FI-Gris-Negro-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221210TVS-Raider-125-FI-Gris-Negro-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221211TVS-Raider-125-FI-Gris-Negro-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221212TVS-Raider-125-FI-Gris-Negro-360-08.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221214TVS-Raider-125-FI-Gris-Negro-360-09.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221216TVS-Raider-125-FI-Gris-Negro-360-10.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221218TVS-Raider-125-FI-Gris-Negro-360-11.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221219TVS-Raider-125-FI-Gris-Negro-360-12.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221221TVS-Raider-125-FI-Gris-Negro-360-13.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221222TVS-Raider-125-FI-Gris-Negro-360-14.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221224TVS-Raider-125-FI-Gris-Negro-360-15.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221225TVS-Raider-125-FI-Gris-Negro-360-16.webp"
+  ]
+ },
+ {
+  "id": 7,
+  "modelo": "TVS Neo NX 110",
+  "categoria": "Semiautomáticas",
+  "precio": 6399999,
+  "descripcion": "Semiautomática de 109.7 cc, sin clutch manual y con disco delantero.",
+  "caracteristicas": {
+   "motor": "109.7 cc",
+   "potencia": "8.44 HP @ 7500 rpm",
+   "torque": "8.5 Nm @ 4500 rpm",
+   "frenos": "Disco 220 mm / Tambor 110 mm",
+   "transmision": "Semiautomática",
+   "alimentacion": "Carburador"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665786TVS-Neo-NX-110-Negro-Mate-Dorado-360-01.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665788TVS-Neo-NX-110-Negro-Mate-Dorado-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665790TVS-Neo-NX-110-Negro-Mate-Dorado-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665792TVS-Neo-NX-110-Negro-Mate-Dorado-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665793TVS-Neo-NX-110-Negro-Mate-Dorado-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665795TVS-Neo-NX-110-Negro-Mate-Dorado-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665797TVS-Neo-NX-110-Negro-Mate-Dorado-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665798TVS-Neo-NX-110-Negro-Mate-Dorado-360-08.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665800TVS-Neo-NX-110-Negro-Mate-Dorado-360-09.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665801TVS-Neo-NX-110-Negro-Mate-Dorado-360-10.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665803TVS-Neo-NX-110-Negro-Mate-Dorado-360-11.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665805TVS-Neo-NX-110-Negro-Mate-Dorado-360-12.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665807TVS-Neo-NX-110-Negro-Mate-Dorado-360-13.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665808TVS-Neo-NX-110-Negro-Mate-Dorado-360-14.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665810TVS-Neo-NX-110-Negro-Mate-Dorado-360-15.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665812TVS-Neo-NX-110-Negro-Mate-Dorado-360-16.webp"
+  ]
+ },
+ {
+  "id": 8,
+  "modelo": "TVS Neo NX 125 FI",
+  "categoria": "Semiautomáticas",
+  "precio": 7999999,
+  "descripcion": "Semiautomática de 4 velocidades con inyección electrónica; pesa 106 kg.",
+  "caracteristicas": {
+   "motor": "124.5 cc",
+   "potencia": "9.25 HP @ 8000 rpm",
+   "torque": "9.3 Nm @ 6000 rpm",
+   "frenos": "Disco 220 mm / Campana 130 mm",
+   "transmision": "Semiautomática 4 velocidades",
+   "alimentacion": "Inyección electrónica"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307626TVS-Neo-NX-125-FI-Thumbnail.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307627TVS-NEO-125-FI-Negro-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307629TVS-NEO-125-FI-Negro-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307630TVS-NEO-125-FI-Negro-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307632TVS-NEO-125-FI-Negro-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307634TVS-NEO-125-FI-Negro-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307635TVS-NEO-125-FI-Negro-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307637TVS-NEO-125-FI-Negro-360-08.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307638TVS-NEO-125-FI-Negro-360-09.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307640TVS-NEO-125-FI-Negro-360-10.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307641TVS-NEO-125-FI-Negro-360-11.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307643TVS-NEO-125-FI-Negro-360-12.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307645TVS-NEO-125-FI-Negro-360-13.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307646TVS-NEO-125-FI-Negro-360-14.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307648TVS-NEO-125-FI-Negro-360-15.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307649TVS-NEO-125-FI-Negro-360-16.webp"
+  ]
+ },
+ {
+  "id": 9,
+  "modelo": "TVS Dazz 110",
+  "categoria": "Automáticas Scooter",
+  "precio": 6499999,
+  "descripcion": "Scooter automática de 109.7 cc con freno de disco delantero.",
+  "caracteristicas": {
+   "motor": "109.7 cc",
+   "potencia": "7.9 HP @ 7500 rpm",
+   "torque": "8.3 Nm @ 5500 rpm",
+   "frenos": "Disco / Tambor",
+   "transmision": "Automática",
+   "alimentacion": "Carburador"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/030920261788393786TVS-Dazz-110-Thumbnail.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/030920261788393788TVS-Dazz-110-Gris-Carbono-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/030920261788393789TVS-Dazz-110-Gris-Carbono-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/030920261788393791TVS-Dazz-110-Gris-Carbono-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/030920261788393793TVS-Dazz-110-Gris-Carbono-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/030920261788393795TVS-Dazz-110-Gris-Carbono-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/030920261788393796TVS-Dazz-110-Gris-Carbono-360-07.webp"
+  ]
+ },
+ {
+  "id": 10,
+  "modelo": "TVS NTORQ 125 XConnect",
+  "categoria": "Automáticas Scooter",
+  "precio": 7999999,
+  "descripcion": "Scooter deportiva de 124.79 cc con refrigeración por aire forzado.",
+  "caracteristicas": {
+   "motor": "124.79 cc",
+   "potencia": "9.25 HP @ 7500 rpm",
+   "torque": "10.5 Nm @ 5500 rpm",
+   "frenos": "Disco 220 mm / Tambor 130 mm",
+   "transmision": "Automática",
+   "alimentacion": "Carburador"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665949TVS-Ntorq-125-Negro-Mate-Dorado-360-01.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665950TVS-Ntorq-125-Negro-Mate-Dorado-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665952TVS-Ntorq-125-Negro-Mate-Dorado-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665954TVS-Ntorq-125-Negro-Mate-Dorado-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665955TVS-Ntorq-125-Negro-Mate-Dorado-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665957TVS-Ntorq-125-Negro-Mate-Dorado-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665959TVS-Ntorq-125-Negro-Mate-Dorado-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665961TVS-Ntorq-125-Negro-Mate-Dorado-360-08.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665962TVS-Ntorq-125-Negro-Mate-Dorado-360-09.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665964TVS-Ntorq-125-Negro-Mate-Dorado-360-10.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665966TVS-Ntorq-125-Negro-Mate-Dorado-360-11.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665967TVS-Ntorq-125-Negro-Mate-Dorado-360-12.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665969TVS-Ntorq-125-Negro-Mate-Dorado-360-13.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665971TVS-Ntorq-125-Negro-Mate-Dorado-360-14.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665972TVS-Ntorq-125-Negro-Mate-Dorado-360-15.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/140820261786665974TVS-Ntorq-125-Negro-Mate-Dorado-360-16.webp"
+  ]
+ },
+ {
+  "id": 11,
+  "modelo": "TVS NTORQ 125 XConnect FI",
+  "categoria": "Automáticas Scooter",
+  "precio": 10199999,
+  "descripcion": "La NTORQ 125 con inyección electrónica.",
+  "caracteristicas": {
+   "motor": "124.79 cc",
+   "potencia": "9.25 HP @ 7000 rpm",
+   "torque": "10.5 Nm @ 5500 rpm",
+   "frenos": "Disco 220 mm / Tambor 130 mm",
+   "transmision": "Automática",
+   "alimentacion": "Inyección electrónica"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307419TVS-NTORQ-125-FI-Thumbnail.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307420TVS-Ntorq-125-FI-Azul-Cuarzo-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307422TVS-Ntorq-125-FI-Azul-Cuarzo-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307423TVS-Ntorq-125-FI-Azul-Cuarzo-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307425TVS-Ntorq-125-FI-Azul-Cuarzo-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307426TVS-Ntorq-125-FI-Azul-Cuarzo-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307428TVS-Ntorq-125-FI-Azul-Cuarzo-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307429TVS-Ntorq-125-FI-Azul-Cuarzo-360-08.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307430TVS-Ntorq-125-FI-Azul-Cuarzo-360-09.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307432TVS-Ntorq-125-FI-Azul-Cuarzo-360-10.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307434TVS-Ntorq-125-FI-Azul-Cuarzo-360-11.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307435TVS-Ntorq-125-FI-Azul-Cuarzo-360-12.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307437TVS-Ntorq-125-FI-Azul-Cuarzo-360-13.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307438TVS-Ntorq-125-FI-Azul-Cuarzo-360-14.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307440TVS-Ntorq-125-FI-Azul-Cuarzo-360-15.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307441TVS-Ntorq-125-FI-Azul-Cuarzo-360-16.webp"
+  ]
+ },
+ {
+  "id": 12,
+  "modelo": "TVS Apache 160 Carburada ABS",
+  "categoria": "Deportivas",
+  "precio": 9649999,
+  "descripcion": "Apache de 159.7 cc con refrigeración aire/aceite y doble disco; pesa 145 kg.",
+  "caracteristicas": {
+   "motor": "159.7 cc",
+   "potencia": "16.3 HP @ 8000 rpm",
+   "torque": "14.8 Nm @ 6500 rpm",
+   "frenos": "Disco 270 mm / Disco 200 mm",
+   "transmision": "Mecánica 5 velocidades",
+   "alimentacion": "Carburador"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246825TVS-Apache-160-Carburada-Negra-Verde-360-01.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246827TVS-Apache-160-Carburada-Negra-Verde-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246828TVS-Apache-160-Carburada-Negra-Verde-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246830TVS-Apache-160-Carburada-Negra-Verde-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246831TVS-Apache-160-Carburada-Negra-Verde-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246833TVS-Apache-160-Carburada-Negra-Verde-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246834TVS-Apache-160-Carburada-Negra-Verde-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246835TVS-Apache-160-Carburada-Negra-Verde-360-08.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246836TVS-Apache-160-Carburada-Negra-Verde-360-09.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246838TVS-Apache-160-Carburada-Negra-Verde-360-10.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246839TVS-Apache-160-Carburada-Negra-Verde-360-11.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246840TVS-Apache-160-Carburada-Negra-Verde-360-12.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246841TVS-Apache-160-Carburada-Negra-Verde-360-13.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246843TVS-Apache-160-Carburada-Negra-Verde-360-14.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246844TVS-Apache-160-Carburada-Negra-Verde-360-15.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246845TVS-Apache-160-Carburada-Negra-Verde-360-16.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246846TVS-Apache-160-Carburada-Negra-Verde-360-17.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246848TVS-Apache-160-Carburada-Negra-Verde-360-18.webp"
+  ]
+ },
+ {
+  "id": 13,
+  "modelo": "TVS Apache RTR 160 4V XC FI",
+  "categoria": "Deportivas",
+  "precio": 10499999,
+  "descripcion": "Apache 160 de 4 válvulas con inyección y modos de manejo (Sport, Urban y Lluvia).",
+  "caracteristicas": {
+   "motor": "159.7 cc",
+   "potencia": "17.3 HP @ 9250 rpm",
+   "torque": "14.7 Nm @ 7250 rpm (modo Sport)",
+   "frenos": "Disco 270 mm / Disco 200 mm",
+   "transmision": "Mecánica 5 velocidades",
+   "alimentacion": "Inyección electrónica"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246623TVS-Apache-RTR-160-4V-XC-FI-Negro-Rojo-360-01.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246624TVS-Apache-RTR-160-4V-XC-FI-Negro-Rojo-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246626TVS-Apache-RTR-160-4V-XC-FI-Negro-Rojo-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246627TVS-Apache-RTR-160-4V-XC-FI-Negro-Rojo-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246628TVS-Apache-RTR-160-4V-XC-FI-Negro-Rojo-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246630TVS-Apache-RTR-160-4V-XC-FI-Negro-Rojo-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246631TVS-Apache-RTR-160-4V-XC-FI-Negro-Rojo-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246632TVS-Apache-RTR-160-4V-XC-FI-Negro-Rojo-360-08.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246634TVS-Apache-RTR-160-4V-XC-FI-Negro-Rojo-360-09.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246635TVS-Apache-RTR-160-4V-XC-FI-Negro-Rojo-360-10.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246636TVS-Apache-RTR-160-4V-XC-FI-Negro-Rojo-360-11.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246638TVS-Apache-RTR-160-4V-XC-FI-Negro-Rojo-360-12.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246639TVS-Apache-RTR-160-4V-XC-FI-Negro-Rojo-360-13.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246640TVS-Apache-RTR-160-4V-XC-FI-Negro-Rojo-360-14.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/170720261784246642TVS-Apache-RTR-160-4V-XC-FI-Negro-Rojo-360-15.webp"
+  ]
+ },
+ {
+  "id": 14,
+  "modelo": "TVS Apache RTR 160 4V XC FI Racing",
+  "categoria": "Deportivas",
+  "precio": 10749999,
+  "descripcion": "Edición Racing de la Apache 160 con inyección; pesa 145 kg.",
+  "caracteristicas": {
+   "motor": "159.7 cc",
+   "potencia": "16.3 HP @ 8000 rpm",
+   "torque": "14.8 Nm @ 6500 rpm",
+   "frenos": "Disco 270 mm / Disco 200 mm",
+   "transmision": "Mecánica 5 velocidades",
+   "alimentacion": "Inyección electrónica"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221169TVS-Apache-RTR-160-4V-XC-FI-RACING-Thumbnail.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221171TVS-Apache-160-FI_Racing-Azul-Cuarzo-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221172TVS-Apache-160-FI_Racing-Azul-Cuarzo-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221174TVS-Apache-160-FI_Racing-Azul-Cuarzo-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221175TVS-Apache-160-FI_Racing-Azul-Cuarzo-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221177TVS-Apache-160-FI_Racing-Azul-Cuarzo-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221178TVS-Apache-160-FI_Racing-Azul-Cuarzo-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221179TVS-Apache-160-FI_Racing-Azul-Cuarzo-360-08.webp"
+  ]
+ },
+ {
+  "id": 15,
+  "modelo": "TVS Apache 160 FI ABS Edición Especial",
+  "categoria": "Deportivas",
+  "precio": 11149999,
+  "descripcion": "Edición Especial de la Apache 160 con inyección y ABS; pesa 145 kg.",
+  "caracteristicas": {
+   "motor": "159.7 cc",
+   "potencia": "16.3 HP @ 8000 rpm",
+   "torque": "14.8 Nm @ 6500 rpm",
+   "frenos": "Disco 270 mm / Disco 200 mm",
+   "transmision": "Mecánica 5 velocidades",
+   "alimentacion": "Inyección electrónica"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221257TVS-Apache-160-FI-ABS-Edicion_Especial-Thumbnail.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221259TVS-Apache-160-FI_Edicion-Especial-Blanco-Celestial-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221261TVS-Apache-160-FI_Edicion-Especial-Blanco-Celestial-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221263TVS-Apache-160-FI_Edicion-Especial-Blanco-Celestial-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221264TVS-Apache-160-FI_Edicion-Especial-Blanco-Celestial-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221266TVS-Apache-160-FI_Edicion-Especial-Blanco-Celestial-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221267TVS-Apache-160-FI_Edicion-Especial-Blanco-Celestial-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221269TVS-Apache-160-FI_Edicion-Especial-Blanco-Celestial-360-08.webp"
+  ]
+ },
+ {
+  "id": 16,
+  "modelo": "TVS Apache 160 NG (preventa)",
+  "categoria": "Deportivas",
+  "precio": 11499999,
+  "descripcion": "Nueva generación con barras invertidas, motor SOHC de 4 válvulas y radiador de aceite.",
+  "caracteristicas": {
+   "motor": "159.7 cc",
+   "potencia": "17.3 HP @ 9250 rpm (modo Sport)",
+   "torque": "14.73 Nm @ 7500 rpm (modo Sport)",
+   "frenos": "Disco 270 mm / Disco 240 mm",
+   "transmision": "Mecánica 5 velocidades",
+   "alimentacion": "Inyección electrónica"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221362APACHE-RTR-160-BARRAS-INVERTIDAS-NEGRO-MATE1.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221363APACHE-RTR-160-BARRAS-INVERTIDAS-NEGRO-MATE2.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221365APACHE-RTR-160-BARRAS-INVERTIDAS-NEGRO-MATE3.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221344APACHE-RTR-160-BARRAS-INVERTIDAS-NEGRO-MATE4.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221345APACHE-RTR-160-BARRAS-INVERTIDAS-NEGRO-MATE5.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221346APACHE-RTR-160-BARRAS-INVERTIDAS-NEGRO-MATE6.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221348APACHE-RTR-160-BARRAS-INVERTIDAS-NEGRO-MATE7.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221349APACHE-RTR-160-BARRAS-INVERTIDAS-NEGRO-MATE8.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221351APACHE-RTR-160-BARRAS-INVERTIDAS-NEGRO-MATE9.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221352APACHE-RTR-160-BARRAS-INVERTIDAS-NEGRO-MATE10.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221353APACHE-RTR-160-BARRAS-INVERTIDAS-NEGRO-MATE11.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221356APACHE-RTR-160-BARRAS-INVERTIDAS-NEGRO-MATE12.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221359APACHE-RTR-160-BARRAS-INVERTIDAS-NEGRO-MATE13.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221360APACHE-RTR-160-BARRAS-INVERTIDAS-NEGRO-MATE14.webp"
+  ]
+ },
+ {
+  "id": 17,
+  "modelo": "TVS Apache 200 Carburada ABS",
+  "categoria": "Deportivas",
+  "precio": 12199999,
+  "descripcion": "Apache de 197.75 cc con refrigeración aire/aceite y doble disco.",
+  "caracteristicas": {
+   "motor": "197.75 cc",
+   "potencia": "20.24 HP @ 8000 rpm",
+   "torque": "18.1 Nm @ 7000 rpm",
+   "frenos": "Disco 270 mm / Disco 240 mm",
+   "transmision": "Mecánica 5 velocidades",
+   "alimentacion": "Carburador"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221275TVS-Apache-200-Carburada-Negro-Dorado-360-01-prueba.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221276TVS-Apache-200-Carburada-Negro-Dorado-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221278TVS-Apache-200-Carburada-Negro-Dorado-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221279TVS-Apache-200-Carburada-Negro-Dorado-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221280TVS-Apache-200-Carburada-Negro-Dorado-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221282TVS-Apache-200-Carburada-Negro-Dorado-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221283TVS-Apache-200-Carburada-Negro-Dorado-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221284TVS-Apache-200-Carburada-Negro-Dorado-360-08.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221286TVS-Apache-200-Carburada-Negro-Dorado-360-09.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221287TVS-Apache-200-Carburada-Negro-Dorado-360-10.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221289TVS-Apache-200-Carburada-Negro-Dorado-360-11.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221290TVS-Apache-200-Carburada-Negro-Dorado-360-12.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221292TVS-Apache-200-Carburada-Negro-Dorado-360-13.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221293TVS-Apache-200-Carburada-Negro-Dorado-360-14.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221294TVS-Apache-200-Carburada-Negro-Dorado-360-15.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221296TVS-Apache-200-Carburada-Negro-Dorado-360-16.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221297TVS-Apache-200-Carburada-Negro-Dorado-360-17.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221299TVS-Apache-200-Carburada-Negro-Dorado-360-18.webp"
+  ]
+ },
+ {
+  "id": 18,
+  "modelo": "TVS Apache RTR 200 4V XC FI ABS",
+  "categoria": "Deportivas",
+  "precio": 12999999,
+  "descripcion": "Apache 200 de 4 válvulas con inyección, ABS y discos lobulados.",
+  "caracteristicas": {
+   "motor": "197.75 cc",
+   "potencia": "20.54 HP @ 9000 rpm",
+   "torque": "17.25 Nm @ 7250 rpm",
+   "frenos": "Disco lobulado 270 mm / Disco lobulado 240 mm",
+   "transmision": "Mecánica 5 velocidades",
+   "alimentacion": "Inyección electrónica"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788220986TVS-Apache-RTR-200-4V-XC-FI-ABS-Thumbnail.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788220988TVS-Apache-RTR-200-4V-XC-FI-Azul-Cuarzo-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788220990TVS-Apache-RTR-200-4V-XC-FI-Azul-Cuarzo-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788220991TVS-Apache-RTR-200-4V-XC-FI-Azul-Cuarzo-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788220993TVS-Apache-RTR-200-4V-XC-FI-Azul-Cuarzo-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788220995TVS-Apache-RTR-200-4V-XC-FI-Azul-Cuarzo-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788220996TVS-Apache-RTR-200-4V-XC-FI-Azul-Cuarzo-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788220998TVS-Apache-RTR-200-4V-XC-FI-Azul-Cuarzo-360-08.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221000TVS-Apache-RTR-200-4V-XC-FI-Azul-Cuarzo-360-09.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221001TVS-Apache-RTR-200-4V-XC-FI-Azul-Cuarzo-360-10.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221004TVS-Apache-RTR-200-4V-XC-FI-Azul-Cuarzo-360-11.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221005TVS-Apache-RTR-200-4V-XC-FI-Azul-Cuarzo-360-12.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221007TVS-Apache-RTR-200-4V-XC-FI-Azul-Cuarzo-360-13.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221009TVS-Apache-RTR-200-4V-XC-FI-Azul-Cuarzo-360-14.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221011TVS-Apache-RTR-200-4V-XC-FI-Azul-Cuarzo-360-15.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221012TVS-Apache-RTR-200-4V-XC-FI-Azul-Cuarzo-360-16.webp"
+  ]
+ },
+ {
+  "id": 19,
+  "modelo": "TVS Apache 200 FI Edición Especial",
+  "categoria": "Deportivas",
+  "precio": 13299999,
+  "descripcion": "Edición Especial de la Apache 200 con inyección y discos lobulados.",
+  "caracteristicas": {
+   "motor": "197.75 cc",
+   "potencia": "20.54 HP @ 9000 rpm",
+   "torque": "17.25 Nm @ 7250 rpm",
+   "frenos": "Disco lobulado 270 mm / Disco lobulado 240 mm",
+   "transmision": "Mecánica 5 velocidades",
+   "alimentacion": "Inyección electrónica"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333469TVS-Apache-200-FI_E-E-Negro_Nebulosa_Blanca-360-01.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333471TVS-Apache-200-FI_E-E-Negro_Nebulosa_Blanca-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333472TVS-Apache-200-FI_E-E-Negro_Nebulosa_Blanca-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333473TVS-Apache-200-FI_E-E-Negro_Nebulosa_Blanca-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333474TVS-Apache-200-FI_E-E-Negro_Nebulosa_Blanca-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333476TVS-Apache-200-FI_E-E-Negro_Nebulosa_Blanca-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333477TVS-Apache-200-FI_E-E-Negro_Nebulosa_Blanca-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333478TVS-Apache-200-FI_E-E-Negro_Nebulosa_Blanca-360-08.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333480TVS-Apache-200-FI_E-E-Negro_Nebulosa_Blanca-360-09.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333481TVS-Apache-200-FI_E-E-Negro_Nebulosa_Blanca-360-10.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333482TVS-Apache-200-FI_E-E-Negro_Nebulosa_Blanca-360-11.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333484TVS-Apache-200-FI_E-E-Negro_Nebulosa_Blanca-360-12.webp"
+  ]
+ },
+ {
+  "id": 20,
+  "modelo": "TVS Apache 200 NG",
+  "categoria": "Deportivas",
+  "precio": 14999999,
+  "descripcion": "Nueva generación de la Apache 200: barras invertidas, 4 válvulas y radiador de aceite.",
+  "caracteristicas": {
+   "motor": "197.75 cc",
+   "potencia": "20.54 HP @ 9000 rpm",
+   "torque": "17.25 Nm @ 7250 rpm",
+   "frenos": "Disco 270 mm / Disco 240 mm",
+   "transmision": "Mecánica 5 velocidades",
+   "alimentacion": "Inyección electrónica"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221315TVS-Apache-200-FI-NG-Thumbnail.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221316TVS-Apache-200-NG-Negro-Rojo-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221318TVS-Apache-200-NG-Negro-Rojo-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221319TVS-Apache-200-NG-Negro-Rojo-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221321TVS-Apache-200-NG-Negro-Rojo-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221322TVS-Apache-200-NG-Negro-Rojo-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221323TVS-Apache-200-NG-Negro-Rojo-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221325TVS-Apache-200-NG-Negro-Rojo-360-08.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221326TVS-Apache-200-NG-Negro-Rojo-360-09.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221328TVS-Apache-200-NG-Negro-Rojo-360-10.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221329TVS-Apache-200-NG-Negro-Rojo-360-11.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221331TVS-Apache-200-NG-Negro-Rojo-360-12.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221332TVS-Apache-200-NG-Negro-Rojo-360-13.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221333TVS-Apache-200-NG-Negro-Rojo-360-14.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221335TVS-Apache-200-NG-Negro-Rojo-360-15.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221336TVS-Apache-200-NG-Negro-Rojo-360-16.webp"
+  ]
+ },
+ {
+  "id": 21,
+  "modelo": "TVS Ronin TD",
+  "categoria": "Alta Gama",
+  "precio": 13999999,
+  "descripcion": "Estilo neo-retro: 225.9 cc, 4 válvulas, tanque de 14 litros y 160 kg.",
+  "caracteristicas": {
+   "motor": "225.9 cc",
+   "potencia": "20.13 HP @ 7750 rpm",
+   "torque": "19.93 Nm @ 3750 rpm",
+   "frenos": "Disco 300 mm / Disco 240 mm",
+   "transmision": "Mecánica 5 velocidades",
+   "alimentacion": "Inyección electrónica"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221121TVS-Ronin-225-TD-Thumbnail.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221124RONIN-GRIS-NEGRO-1.png",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221126RONIN-GRIS-NEGRO-2.png",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221127RONIN-GRIS-NEGRO-3.png",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221129RONIN-GRIS-NEGRO-4.png",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221131RONIN-GRIS-NEGRO-5.png",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221132RONIN-GRIS-NEGRO-6.png",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221122RONIN-GRIS-NEGRO-8.png"
+  ]
+ },
+ {
+  "id": 22,
+  "modelo": "TVS Apache RTR 310",
+  "categoria": "Alta Gama",
+  "precio": 27799999,
+  "descripcion": "La naked tope de línea: 312.12 cc, refrigeración líquida, 6 velocidades y quick shifter.",
+  "caracteristicas": {
+   "motor": "312.12 cc",
+   "potencia": "35.6 HP @ 9700 rpm (Sport/Track)",
+   "torque": "28.7 Nm @ 6650 rpm (Sport/Track)",
+   "frenos": "Disco 300 mm / Disco 240 mm",
+   "transmision": "Mecánica 6 velocidades + quick shifter",
+   "alimentacion": "Inyección electrónica"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221143TVS-Apache-RTR-310-Thumbnail.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221144TVS-Apache-RTR-310-Amarillo-Negro-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221146TVS-Apache-RTR-310-Amarillo-Negro-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221147TVS-Apache-RTR-310-Amarillo-Negro-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221149TVS-Apache-RTR-310-Amarillo-Negro-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221150TVS-Apache-RTR-310-Amarillo-Negro-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221152TVS-Apache-RTR-310-Amarillo-Negro-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/08/010920261788221153TVS-Apache-RTR-310-Amarillo-Negro-360-08.webp"
+  ]
+ },
+ {
+  "id": 23,
+  "modelo": "TVS Apache RTR 310 PRM",
+  "categoria": "Alta Gama",
+  "precio": 29499999,
+  "descripcion": "Versión premium de la RTR 310; pesa 170 kg.",
+  "caracteristicas": {
+   "motor": "312.12 cc",
+   "potencia": "35.6 HP @ 9700 rpm (Sport/Track)",
+   "torque": "28.7 Nm @ 6650 rpm (Sport/Track)",
+   "frenos": "Disco 300 mm / Disco",
+   "transmision": "Mecánica 6 velocidades + quick shifter",
+   "alimentacion": "Inyección electrónica"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333324TVS-Apache-RTR-310-PRM-Negra-Rojo-360-01.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333325TVS-Apache-RTR-310-PRM-Negra-Rojo-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333327TVS-Apache-RTR-310-PRM-Negra-Rojo-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333328TVS-Apache-RTR-310-PRM-Negra-Rojo-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333329TVS-Apache-RTR-310-PRM-Negra-Rojo-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333331TVS-Apache-RTR-310-PRM-Negra-Rojo-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333332TVS-Apache-RTR-310-PRM-Negra-Rojo-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/07/180720261784333333TVS-Apache-RTR-310-PRM-Negra-Rojo-360-08.webp"
+  ]
+ },
+ {
+  "id": 24,
+  "modelo": "TVS King Deluxe Plus GS+",
+  "categoria": "Motocarros",
+  "precio": 17999000,
+  "descripcion": "Motocarro de pasajeros con refrigeración por aire forzado y caja de 4 velocidades.",
+  "caracteristicas": {
+   "motor": "No indicado",
+   "potencia": "10.06 HP @ 5500 rpm",
+   "torque": "15.5 Nm @ 3250 rpm",
+   "frenos": "Tambor / Tambor",
+   "transmision": "Mecánica 4 velocidades",
+   "alimentacion": "Carburador"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307727TVS-King-Deluxe-GS+-Thumbnail.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307729TVS-King-Deluxe-GS--360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307731TVS-King-Deluxe-GS--360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307733TVS-King-Deluxe-GS--360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307734TVS-King-Deluxe-GS--360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307736TVS-King-Deluxe-GS--360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307737TVS-King-Deluxe-GS--360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307739TVS-King-Deluxe-GS--360-08.webp"
+  ]
+ },
+ {
+  "id": 25,
+  "modelo": "TVS King Deluxe Plus GS+ Especial",
+  "categoria": "Motocarros",
+  "precio": 18799000,
+  "descripcion": "Motocarro de pasajeros con refrigeración por aire forzado y caja de 4 velocidades.",
+  "caracteristicas": {
+   "motor": "No indicado",
+   "potencia": "10.06 HP @ 5500 rpm",
+   "torque": "15.5 Nm @ 3250 rpm",
+   "frenos": "Tambor / Tambor",
+   "transmision": "Mecánica 4 velocidades",
+   "alimentacion": "Carburador"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307743TVS-King-Deluxe-GS+-Especial-Thumbnail.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307745TVS-King-Deluxe-GS--Especial-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307747TVS-King-Deluxe-GS--Especial-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307748TVS-King-Deluxe-GS--Especial-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307750TVS-King-Deluxe-GS--Especial-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307752TVS-King-Deluxe-GS--Especial-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307754TVS-King-Deluxe-GS--Especial-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307755TVS-King-Deluxe-GS--Especial-360-08.webp"
+  ]
+ },
+ {
+  "id": 26,
+  "modelo": "TVS King Deluxe Plus GS+ Full",
+  "categoria": "Motocarros",
+  "precio": 19599000,
+  "descripcion": "Motocarro de pasajeros con refrigeración por aire forzado y caja de 4 velocidades.",
+  "caracteristicas": {
+   "motor": "No indicado",
+   "potencia": "10.06 HP @ 5500 rpm",
+   "torque": "15.5 Nm @ 3250 rpm",
+   "frenos": "Tambor / Tambor",
+   "transmision": "Mecánica 4 velocidades",
+   "alimentacion": "Carburador"
+  },
+  "imagenes": [
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307760TVS-King-Deluxe-GS+-Full-Thumbnail.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307762TVS-King-Deluxe-GS--Full-360-02.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307764TVS-King-Deluxe-GS--Full-360-03.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307765TVS-King-Deluxe-GS--Full-360-04.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307767TVS-King-Deluxe-GS--Full-360-05.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307768TVS-King-Deluxe-GS--Full-360-06.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307770TVS-King-Deluxe-GS--Full-360-07.webp",
+   "https://web2.fireboldweb.com/wp-content/uploads/2026/09/020920261788307772TVS-King-Deluxe-GS--Full-360-08.webp"
+  ]
+ }
 ];
 
 app.get('/api/motos', (req, res) => {
