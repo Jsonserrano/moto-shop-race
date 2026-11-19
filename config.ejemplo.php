@@ -1,7 +1,7 @@
 // config.php
 <?php
 $host = 'localhost';
-$dbname = 'yamaha_colombia_db';
+$dbname = 'moto_shop_race_db';
 $username = 'tu_usuario';
 $password = 'tu_password';
 

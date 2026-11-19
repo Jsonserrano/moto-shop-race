@@ -116,3 +116,57 @@ header { background: #111; padding: 15px 5%; display: flex; justify-content: spa
 .bloque-moto.resaltado { border-color: var(--tvs-red); box-shadow: 0 0 25px rgba(227, 24, 55, 0.7); transition: box-shadow 0.3s; }
 @media (max-width: 800px) { .banner-raider { flex-direction: column; text-align: center; margin: 15px 10px; padding: 25px 20px; } .banner-datos { text-align: left; } }
 @media (min-width: 1001px) { .container, .banner-raider { width: auto; max-width: 1200px; margin-left: max(100px, calc((100% - 1200px) / 2)); margin-right: max(20px, calc((100% - 1200px) / 2)); } }
+
+/* ===== Todas las pantallas: relojes, celulares, tablets, portátiles y televisores ===== */
+img { max-width: 100%; -webkit-user-drag: none; }
+.grid-bloques { grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); }
+header { flex-wrap: wrap; gap: 10px; }
+
+/* Tablets */
+@media (min-width: 801px) and (max-width: 1000px) {
+  .container { width: 94%; }
+  .section-title { font-size: 1.7rem; }
+}
+/* Celulares */
+@media (max-width: 600px) {
+  header { padding: 10px 4%; }
+  .logo h1 { font-size: 1.05rem; }
+  .auth-btn { padding: 6px 10px; }
+  .section-title { font-size: 1.4rem; margin-bottom: 20px; }
+  .container { margin-top: 15px; }
+  .bloque-info { padding: 15px; }
+  .payment-grid { gap: 15px; }
+  .banner-datos { grid-template-columns: 1fr; }
+  .modal-content { padding: 22px 18px; }
+}
+/* Celulares pequeños */
+@media (max-width: 380px) {
+  .specs-grid { grid-template-columns: 1fr; }
+  .miniaturas-container img { width: 40px; height: 40px; }
+  .visor-360, .img-principal { height: 170px; }
+  .bloque-precio { font-size: 1.35rem; }
+}
+/* Relojes inteligentes (hasta 300 px) */
+@media (max-width: 300px) {
+  html { font-size: 13px; }
+  header { justify-content: center; padding: 8px; }
+  .logo i { font-size: 1.3rem; }
+  .logo h1 { font-size: .95rem; text-align: center; }
+  .header-actions { width: 100%; justify-content: center; gap: 8px; }
+  .container { width: 100%; padding: 0 6px; margin: 10px auto; }
+  .banner-raider { margin: 8px 4px; padding: 16px 10px; gap: 12px; }
+  .banner-lema { font-size: .95rem; }
+  .filtro-btn { padding: 6px 10px; font-size: .8rem; }
+  .galeria-bloque { padding: 8px; }
+  .visor-360, .img-principal { height: 130px; }
+  .miniaturas-container { flex-wrap: wrap; }
+  .botones-accion { flex-direction: column; gap: 8px; }
+  .btn-cart { width: 100%; min-height: 40px; }
+  .payment-method { width: 90px; }
+  .qr-code { width: 150px; height: 150px; }
+}
+/* Pantallas grandes y televisores */
+@media (min-width: 1680px) { html { font-size: 17px; } .visor-360, .img-principal { height: 260px; } }
+@media (min-width: 1920px) { body { zoom: 1.15; } }
+@media (min-width: 2560px) { body { zoom: 1.5; } }
+@media (min-width: 3800px) { body { zoom: 2.2; } }
